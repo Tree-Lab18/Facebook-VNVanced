@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Facebook VNVanced",
+  "version": "1.0.1",  
+  "description": "Chặn quảng cáo, lọc bình luận, ẩn mục không mong muốn và hơn thế nữa trên Facebook.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Facebook VNVanced"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",        
+    "activeTab",      
+    "scripting",      
+    "cookies"         
+  ],
+  "host_permissions": [
+    "*://*.facebook.com/*",
+    "*://*.messenger.com/*"  
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end" 
+    }
+  ],
+   "web_accessible_resources": [  
+    {
+      "resources": [ "tokenFetcher.js" ],
+      "matches": [ "*://*.facebook.com/*" ]
+    }
+  ]
+}

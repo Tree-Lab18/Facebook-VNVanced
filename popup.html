@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8">
+        <title>Facebook VNVanced Control</title>
+        <link rel="stylesheet" href="popup.css">
+    </head>
+    <body data-theme="dark">
+        <div class="container">
+            <div class="card header-group">
+                <img src="icons/icon128.png" id="logoToggle" title="Bật/Tắt chặn quảng cáo & các bộ lọc chính">
+                <div class="header-text">
+                    <h2>Facebook VNVanced</h2>
+                    <p>
+                        Bởi <a href="https://www.facebook.com/Ki3tNgu/" target="_blank" rel="noopener noreferrer">Nguyễn Anh Kiệt</a>
+                    </p>
+                    <p>
+                        <span class="donate-link" id="donateLink">Ủng hộ tác giả 🍜</span>
+                        <span class="qr-code" id="qrScanContainer">
+                            <img src="icons/qr.png" alt="QR Code ủng hộ">
+                        </span>
+                    </p>
+                </div>
+                <button id="themeToggle" title="Chuyển giao diện Sáng/Tối">
+                    <span class="visually-hidden">Chuyển giao
+          diện</span>
+                </button>
+            </div>
+            <div class="card stats-group">
+                <p>
+                    Đã xóa: <span class="count-number ad-count" id="removedAdCountDisplay">0</span>
+                    quảng cáo & <span class="count-number spam-count" id="removedSpamCountDisplay">0</span>
+                    bình luận spam.
+                </p>
+            </div>
+            <div class="expand-button-container">
+                <button class="expand-button" id="showMore">
+                    Cài đặt nâng cao 
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.99998 5.16666L7.99998 10.8333L14 5.16666" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="card option-group advanced-options" id="moreOptions">
+                <h4>Bộ lọc & Tùy chỉnh</h4>
+                <input type="checkbox" id="adBlockToggle" class="visually-hidden">
+                <div class="option-row">
+                    <label class="option-label" for="reelsToggle">Ẩn Reels & Video ngắn</label>
+                    <label class="switch">
+                        <input type="checkbox" id="reelsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="option-row">
+                    <label class="option-label" for="suggestToggle" title="Ẩn gợi ý kết bạn, nhóm, trang,...">Ẩn mục Gợi ý</label>
+                    <label class="switch">
+                        <input type="checkbox" id="suggestToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="option-row">
+                    <label class="option-label" for="storyToggle">Ẩn Tin</label>
+                    <label class="switch">
+                        <input type="checkbox" id="storyToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="option-row">
+                    <label class="option-label" for="newFeedsToggle" title="Ẩn tất cả bài đăng trên Bảng tin (News Feed)">Ẩn toàn bộ Bảng tin</label>
+                    <label class="switch">
+                        <input type="checkbox" id="newFeedsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="option-row">
+                    <label class="option-label" for="commentFilterToggle">Lọc bình luận</label>
+                    <label class="switch">
+                        <input type="checkbox" id="commentFilterToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="option-row textarea-row">
+                    <label for="commentFilters" class="option-label">Từ khóa lọc (phân cách
+          bằng dấu phẩy",") </label>
+                    <textarea id="commentFilters" placeholder="vd: vay tiền, ib zalo, .xyz, ..." rows="3"></textarea>
+                </div>
+                <h4>Giao diện Facebook</h4>
+                <div class="option-row">
+                    <label class="option-label" for="compactUISelect">Ẩn thanh bên</label>
+                    <div class="select-container">
+                        <select id="compactUISelect">
+                            <option value="0">Không ẩn</option>
+                            <option value="1">Ẩn thanh bên trái</option>
+                            <option value="2">Ẩn thanh bên phải</option>
+                            <option value="3">Ẩn cả hai thanh</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>
