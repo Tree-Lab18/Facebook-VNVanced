@@ -1,49 +1,130 @@
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <meta charset="utf-8">
-        <title>Facebook VNVanced Control</title>
-        <link rel="stylesheet" href="popup.css">
-    </head>
-    <body data-theme="dark">
-        <div class="container">
-            <div class="card header-group">
-                <img src="icons/icon128.png" id="logoToggle" title="Bật/Tắt chặn quảng cáo & các bộ lọc chính">
-                <div class="header-text">
-                    <h2>Facebook VNVanced</h2>
-                    <p>
-                        Bởi <a href="https://www.facebook.com/Ki3tNgu/" target="_blank" rel="noopener noreferrer">Nguyễn Anh Kiệt</a>
-                    </p>
-                    <p>
-                        <span class="donate-link" id="donateLink">Ủng hộ tác giả 🍜</span>
-                        <span class="qr-code" id="qrScanContainer">
-                            <img src="icons/qr.png" alt="QR Code ủng hộ">
-                        </span>
-                    </p>
-                </div>
-                <button id="themeToggle" title="Chuyển giao diện Sáng/Tối">
-                    <span class="visually-hidden">Chuyển giao
-          diện</span>
-                </button>
+<head>
+    <meta charset="utf-8">
+    <title>Facebook VNVanced Control</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <div class="card header-card" style="text-align: center;">
+            <div class="logo-container">
+                <img src="icons/icon128.png" id="logoToggle" title="Bật/Tắt Xóa quảng cáo & các bộ lọc chính">
             </div>
-            <div class="card stats-group">
+            <div class="header-text">
+                <h2>Facebook VNVanced</h2>
                 <p>
-                    Đã xóa: <span class="count-number ad-count" id="removedAdCountDisplay">0</span>
-                    quảng cáo & <span class="count-number spam-count" id="removedSpamCountDisplay">0</span>
-                    bình luận spam.
+                    Bởi <a href="https://www.facebook.com/Ki3tNgu/" target="_blank" rel="noopener noreferrer">Nguyễn Anh Kiệt</a>
+                </p>
+                <p>
+                    <span class="donate-link" id="donateLink">Ủng hộ tác giả 🍜</span>
                 </p>
             </div>
-            <div class="expand-button-container">
-                <button class="expand-button" id="showMore">
-                    Cài đặt nâng cao 
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.99998 5.16666L7.99998 10.8333L14 5.16666" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
+            <button id="themeToggle" title="Chuyển giao diện Sáng/Tối" aria-label="Chuyển giao diện">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="qr-code-container" id="qrScanContainer">
+            <div class="qr-code-card">
+                <img src="icons/qr.png" alt="QR Code ủng hộ">
+                <p>Quét mã để ủng hộ</p>
             </div>
-            <div class="card option-group advanced-options" id="moreOptions">
-                <h4>Bộ lọc & Tùy chỉnh</h4>
-                <input type="checkbox" id="adBlockToggle" class="visually-hidden">
+        </div>
+
+        <div class="card stats-card">
+            <div class="stats-item">
+                <div class="stats-icon ad-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                        <path d="M3 9h18"></path>
+                        <path d="M9 21V9"></path>
+                    </svg>
+                </div>
+                <div class="stats-content">
+                    <span class="stats-label">Quảng cáo đã xóa</span>
+                    <span class="stats-value" id="removedAdCountDisplay">0</span>
+                </div>
+            </div>
+            <div class="stats-item">
+                <div class="stats-icon spam-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                    </svg>
+                </div>
+                <div class="stats-content">
+                    <span class="stats-label">Bình luận spam đã xóa</span>
+                    <span class="stats-value" id="removedSpamCountDisplay">0</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="expand-button" id="showMore" aria-expanded="false">
+            <span>Cài đặt nâng cao</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-icon">
+                <path d="m6 9 6 6 6-6"></path>
+            </svg>
+        </button>
+
+        <!-- Các chức năng nâng cao -->
+        <div class="advanced-options" id="moreOptions">
+            <!-- Xóa & Xóa Nội dung -->
+            <div class="card option-card">
+                <h4 class="option-category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
+                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
+                        <circle cx="12" cy="12" r="2"></circle>
+                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
+                        <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"></path>
+                    </svg>
+                    Xóa Nội dung
+                </h4>
+                
+                <div class="option-row">
+                    <label class="option-label" for="adBlockToggle">Xóa quảng cáo</label>
+                    <label class="switch">
+                        <input type="checkbox" id="adBlockToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="option-row">
+                    <label class="option-label" for="postsToggle" title="Xóa các bài viết thông thường">Xóa bài viết cá nhân</label>
+                    <label class="switch">
+                        <input type="checkbox" id="postsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="option-row">
+                    <label class="option-label" for="groupPostsToggle" title="Xóa các bài viết từ Nhóm bạn đã tham gia">Xóa bài viết Nhóm</label>
+                    <label class="switch">
+                        <input type="checkbox" id="groupPostsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="option-row">
+                    <label class="option-label" for="pagePostsToggle" title="Xóa các bài viết từ Trang bạn đã thích/theo dõi">Xóa bài viết Trang</label>
+                    <label class="switch">
+                        <input type="checkbox" id="pagePostsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Bộ lọc & Tùy chỉnh -->
+            <div class="card option-card">
+                <h4 class="option-category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    Bộ lọc & Tùy chỉnh
+                </h4>
+                
                 <div class="option-row">
                     <label class="option-label" for="reelsToggle">Ẩn Reels & Video ngắn</label>
                     <label class="switch">
@@ -51,6 +132,7 @@
                         <span class="slider"></span>
                     </label>
                 </div>
+                
                 <div class="option-row">
                     <label class="option-label" for="suggestToggle" title="Ẩn gợi ý kết bạn, nhóm, trang,...">Ẩn mục Gợi ý</label>
                     <label class="switch">
@@ -58,13 +140,15 @@
                         <span class="slider"></span>
                     </label>
                 </div>
+                
                 <div class="option-row">
-                    <label class="option-label" for="storyToggle">Ẩn Tin</label>
+                    <label class="option-label" for="storyToggle">Ẩn Tin (Stories)</label>
                     <label class="switch">
                         <input type="checkbox" id="storyToggle">
                         <span class="slider"></span>
                     </label>
                 </div>
+                
                 <div class="option-row">
                     <label class="option-label" for="newFeedsToggle" title="Ẩn tất cả bài đăng trên Bảng tin (News Feed)">Ẩn toàn bộ Bảng tin</label>
                     <label class="switch">
@@ -72,19 +156,42 @@
                         <span class="slider"></span>
                     </label>
                 </div>
+            </div>
+
+            <!-- Lọc bình luận -->
+            <div class="card option-card">
+                <h4 class="option-category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Lọc Bình luận
+                </h4>
+                
                 <div class="option-row">
-                    <label class="option-label" for="commentFilterToggle">Lọc bình luận</label>
+                    <label class="option-label" for="commentFilterToggle">Lọc bình luận theo từ khóa</label>
                     <label class="switch">
                         <input type="checkbox" id="commentFilterToggle">
                         <span class="slider"></span>
                     </label>
                 </div>
+                
                 <div class="option-row textarea-row">
-                    <label for="commentFilters" class="option-label">Từ khóa lọc (phân cách
-          bằng dấu phẩy",") </label>
+                    <label for="commentFilters" class="option-label">Từ khóa lọc (phân cách bằng dấu phẩy ",")</label>
                     <textarea id="commentFilters" placeholder="vd: vay tiền, ib zalo, .xyz, ..." rows="3"></textarea>
                 </div>
-                <h4>Giao diện Facebook</h4>
+            </div>
+
+            <!-- Giao diện Facebook -->
+            <div class="card option-card">
+                <h4 class="option-category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                        <line x1="3" x2="21" y1="9" y2="9"></line>
+                        <line x1="9" x2="9" y1="21" y2="9"></line>
+                    </svg>
+                    Giao diện Facebook
+                </h4>
+                
                 <div class="option-row">
                     <label class="option-label" for="compactUISelect">Ẩn thanh bên</label>
                     <div class="select-container">
@@ -97,7 +204,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="popup.js"></script>
-    </body>
+        </div> <!-- End advanced-options -->
+    </div> <!-- End container -->
+    <script src="popup.js"></script>
+</body>
 </html>

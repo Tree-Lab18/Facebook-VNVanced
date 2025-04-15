@@ -34,7 +34,12 @@
   ],
    "web_accessible_resources": [  
     {
-      "resources": [ "tokenFetcher.js" ],
+      "resources": [ 
+        "tokenFetcher.js",
+        "icons/qr.png",
+        "icons/icon128.png"
+    ],
+      
       "matches": [ "*://*.facebook.com/*" ]
     }
   ]
