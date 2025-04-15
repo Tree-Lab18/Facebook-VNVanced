@@ -1,6 +1,5 @@
 let badgeCount = 0;
 
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'updateBadgeCount') {
     badgeCount = typeof request.count === 'number' || typeof request.count === 'string' ? request.count : 0;
@@ -33,7 +32,7 @@ const updateBadgeText = () => {
 
 
 chrome.runtime.onStartup.addListener(() => {
-  console.log("VNVanced: Browser startup, resetting badge.");
+  
   badgeCount = 0;
   updateBadgeText();
 });
@@ -41,7 +40,7 @@ chrome.runtime.onStartup.addListener(() => {
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install" || details.reason === "update") {
-    console.log(`VNVanced: Extension ${details.reason === "install" ? "installed" : "updated"}.`);
+    
     badgeCount = 0;
     updateBadgeText();
 
@@ -69,11 +68,11 @@ chrome.runtime.onInstalled.addListener((details) => {
           if (chrome.runtime.lastError) {
             
           } else {
-            console.log("VNVanced: Default settings applied where needed.");
+            
           }
         });
       } else {
-        console.log("VNVanced: Existing settings found, defaults not needed.");
+        
       }
     });
   }
